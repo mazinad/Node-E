@@ -1,0 +1,15 @@
+import userController from '../controller/userController';
+import express from 'express';
+import auth from '../middleware/auth';
+const router = express.Router();
+router.post('/register',userController.registerUser);
+router.post('/login', userController.loginUser);
+router.post('/logout', auth, userController.logoutUser);
+// router.post('/forgot-password', userController.forgotPassword);
+// router.post('/reset-password', userController.resetPassword);
+router.post('/verify', userController.verify);
+router.post('/logoutAll', auth, userController.logoutAllUser);
+router.get('/getUser', auth,userController.getUser);
+router.put('/updateUser/:id', auth,userController.updateUser);
+router.delete('/deleteUser/:id',auth, userController.deleteUser);
+export default router;
